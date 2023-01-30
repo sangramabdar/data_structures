@@ -48,11 +48,50 @@ class MyLinkedList {
     }
 
     deleteFront() {
-        if (this.head === null) return null;
+        if (!this.head) return null;
 
         let value = this.head.value;
         this.head = this.head.next;
         this.length--;
+        return value;
+    }
+
+    deleteLast() {
+        let value = null;
+        if (this.length <= 0) return null;
+
+        if (this.length === 1) {
+            value = this.head.value;
+            this.head = null;
+            this.tail = null;
+            return value;
+        }
+
+        if (this.length == 2) {
+            value = this.tail.value;
+            this.tail = this.head;
+            this.head.next = null;
+            return value;
+        }
+
+        let localIndex = 1;
+        let node = this.head.next;
+        let prev = this.head;
+
+        while (node != null) {
+            if (localIndex === this.length - 1) {
+                value = node.value;
+                prev.next = node.next;
+                this.tail = prev;
+                this.length--;
+                break;
+            } else {
+                prev = node;
+                node = node.next;
+                localIndex++;
+            }
+        }
+
         return value;
     }
 
@@ -76,9 +115,9 @@ class MyLinkedList {
             return value;
         }
 
-        let localIndex = 0;
-        let node = this.head;
-        let prev;
+        let localIndex = 1;
+        let node = this.head.next;
+        let prev = this.head;
 
         while (node != null) {
             if (localIndex === index && localIndex === this.length - 1) {
@@ -108,8 +147,8 @@ myLinkedList.add(1);
 myLinkedList.add(2);
 myLinkedList.add(3);
 
-console.log(myLinkedList.remove(1));
-console.log(myLinkedList.remove(1));
-console.log(myLinkedList.remove(1));
-console.log(myLinkedList.remove(0));
-console.log(myLinkedList.remove(0));
+// console.log(myLinkedList.remove(1));
+// console.log(myLinkedList.remove(1));
+// console.log(myLinkedList.remove(1));
+// console.log(myLinkedList.remove(0));
+console.log(myLinkedList.deleteLast());

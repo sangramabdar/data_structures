@@ -45,5 +45,8 @@ let myStack = new MyStack();
 
 myStack.push(1);
 myStack.push(2);
-
 console.log(myStack.peek());
+console.log(myStack.pop());
+console.log(myStack.pop());
+console.log(myStack.pop());
+console.log(myStack.isEmpty());

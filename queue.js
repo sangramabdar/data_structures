@@ -7,31 +7,33 @@ class MyNode {
     }
 }
 
-class MyStack {
+class MyQueue {
     head = null;
+    tail = null;
 
-    peek() {
-        if (!this.head) return null;
-        return this.head.value;
-    }
-
-    push(value) {
+    enqueue(value) {
         let node = new MyNode(value);
-
         if (!this.head) {
             this.head = node;
             return;
         }
 
-        node.next = this.head;
-        this.head = node;
+        if (!this.tail) {
+            this.tail = node;
+            this.head.next = this.tail;
+            return;
+        }
+
+        this.tail.next = node;
+        this.tail = node;
     }
 
-    pop() {
+    dequeue() {
         if (!this.head) return null;
 
         let value = this.head.value;
         this.head = this.head.next;
+
         return value;
     }
 
@@ -39,11 +41,19 @@ class MyStack {
         if (!this.head) return true;
         return false;
     }
+
+    front() {
+        if (!this.head) return null;
+
+        return this.head.value;
+    }
 }
 
-let myStack = new MyStack();
+let myQueue = new MyQueue();
 
-myStack.push(1);
-myStack.push(2);
+myQueue.enqueue(2);
+myQueue.enqueue(3);
 
-console.log(myStack.peek());
+while (!myQueue.isEmpty()) {
+    console.log(myQueue.dequeue());
+}

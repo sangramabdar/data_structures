@@ -147,8 +147,4 @@ myLinkedList.add(1);
 myLinkedList.add(2);
 myLinkedList.add(3);
 
-// console.log(myLinkedList.remove(1));
-// console.log(myLinkedList.remove(1));
-// console.log(myLinkedList.remove(1));
-// console.log(myLinkedList.remove(0));
-console.log(myLinkedList.deleteLast());
+myLinkedList.traverse();
